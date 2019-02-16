@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">hello</string>
+    <string name="id">User id</string>
+    <string name="mdp">Groupe</string>
+    <string name="button">SEND</string>
+    <string name="adr">Your address...</string>
+    <string name="friend">friend?</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+</resources>

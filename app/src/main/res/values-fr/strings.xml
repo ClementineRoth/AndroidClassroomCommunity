@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Salut</string>
+    <string name="id">id Utilisateur</string>
+    <string name="mdp">groupe</string>
+    <string name="button">S\'AUTHENTIFIER</string>
+    <string name="adr">Votre addresse...</string>
+    <string name="friend">amis?</string>
+    <string name="open">Ouvrir</string>
+    <string name="close">Fermer</string>
+</resources>
