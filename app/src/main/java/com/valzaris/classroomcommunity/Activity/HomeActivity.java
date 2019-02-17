@@ -81,10 +81,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         for(Friend f : result) {
                             String t=f.id+"";
                             if(t.equals(myid)){myName=f.getFirst_name()+f.getLast_name();}
-                            if(!t.equals(myid)){
-                                listNameFriend.add(f.getFirst_name() + " " + f.getLast_name());
-                                Log.w("resB", f.getFirst_name() + " " + f.getLast_name());
-                            }
+                            listNameFriend.add(f.getFirst_name() + " " + f.getLast_name());
+                            Log.w("resB", f.getFirst_name() + " " + f.getLast_name());
                         }
                         ArrayAdapter myAd = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,listNameFriend){
                             @Override
@@ -94,7 +92,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 HomeActivity.changeConnected(f,row,null);
                                 return row;
                             }
-
                         };
                         listViewFriend.setAdapter(myAd);
                         listViewFriend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
