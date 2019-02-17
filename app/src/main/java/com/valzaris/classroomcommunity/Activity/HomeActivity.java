@@ -1,10 +1,7 @@
 package com.valzaris.classroomcommunity.Activity;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,7 +23,6 @@ import com.google.gson.reflect.TypeToken;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.valzaris.classroomcommunity.FragmentFriends;
-import com.valzaris.classroomcommunity.FragmentProfil;
 import com.valzaris.classroomcommunity.FragmentQRCode;
 import com.valzaris.classroomcommunity.class_source.Friend;
 import com.valzaris.classroomcommunity.R;
@@ -46,7 +42,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public static int selectedIndexFriend = -1;
     public static String myName;
     public static View selectedViewFriend = null;
-
+    public Friend me;
     public String gr;
     public String myid;
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +79,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         listNameFriend = new ArrayList<String>();
                         for(Friend f : result) {
                             String t=f.id+"";
-                            if(t.equals(myid)){myName=f.getFirst_name()+f.getLast_name();}
+                            if(t.equals(myid)){myName=f.getFirst_name()+f.getLast_name();me=f;}
                             listNameFriend.add(f.getFirst_name() + " " + f.getLast_name());
                             Log.w("resB", f.getFirst_name() + " " + f.getLast_name());
                         }
@@ -169,9 +165,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_presence:
                 getFragmentManager().beginTransaction().replace(R.id.contentFL, new FragmentQRCode()).commit();
                 break;
-            case R.id.nav_profil:
-                getFragmentManager().beginTransaction().replace(R.id.contentFL, new FragmentProfil()).commit();
-                break;
             case R.id.nav_deconnection:
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
                 builder.setTitle("confirmation");
@@ -215,5 +208,4 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             row.setBackgroundResource(R.color.redColor);
         }
     }
-
 }
