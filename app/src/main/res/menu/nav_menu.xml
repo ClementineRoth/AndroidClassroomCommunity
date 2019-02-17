@@ -12,9 +12,6 @@
         android:id="@+id/nav_profil"
         android:title="profil"/>
     <item
-        android:id="@+id/nav_parametre"
-        android:title="Paramètre"/>
-    <item
         android:id="@+id/nav_deconnection"
         android:title="Se déconnecter"/>
 </menu>

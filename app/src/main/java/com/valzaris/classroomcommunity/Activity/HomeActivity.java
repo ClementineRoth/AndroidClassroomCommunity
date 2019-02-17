@@ -1,6 +1,7 @@
 package com.valzaris.classroomcommunity.Activity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -9,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -24,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.valzaris.classroomcommunity.FragmentFriends;
+import com.valzaris.classroomcommunity.FragmentProfil;
 import com.valzaris.classroomcommunity.FragmentQRCode;
 import com.valzaris.classroomcommunity.class_source.Friend;
 import com.valzaris.classroomcommunity.R;
@@ -154,21 +157,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
-    public void onRequestPermissionResult(int requestCode, String[] permissions, int[]grantResults){
-        if (requestCode==99 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
 
-        }
-    }
-
-    public void QRCodeInit(){
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CAMERA)!=
-                PackageManager.PERMISSION_GRANTED){
-            requestPermissions(new String[]{Manifest.permission.CAMERA},99);
-        }
-        else{
-
-        }
-    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -179,7 +168,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_presence:
                 getFragmentManager().beginTransaction().replace(R.id.contentFL, new FragmentQRCode()).commit();
-                QRCodeInit();
+                break;
+            case R.id.nav_profil:
+                getFragmentManager().beginTransaction().replace(R.id.contentFL, new FragmentProfil()).commit();
+                break;
+            case R.id.nav_deconnection:
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                builder.setTitle("confirmation");
+                builder.setMessage("Voulez vous vraiment partir?")
+                        .setCancelable(false)
+                        .setPositiveButton("oui", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("non", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
